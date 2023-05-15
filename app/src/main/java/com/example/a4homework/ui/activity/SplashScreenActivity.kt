@@ -2,12 +2,11 @@ package com.example.a4homework.ui.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import com.example.a4homework.R
+import android.os.CountDownTimer
+import androidx.appcompat.app.AppCompatActivity
 import com.example.a4homework.databinding.ActivitySplashScreenBinding
+
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
@@ -22,19 +21,11 @@ class SplashScreenActivity : AppCompatActivity() {
     }
     private fun start(){
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            if(progres >= 1500){
-                startApp()
-                finish()
-            }else{
-                start()
-                progres+=100
-                binding.LaunchProgress.progress = progres
+        object : CountDownTimer(1000, 100) {
+            override fun onTick(l: Long) {}
+            override fun onFinish() {
+                startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
             }
-        },100)
-    }
-    private fun startApp(){
-        val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
-        startActivity(intent)
+        }.start()
     }
 }

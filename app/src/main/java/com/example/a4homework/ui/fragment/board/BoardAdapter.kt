@@ -9,7 +9,7 @@ import com.example.a4homework.R
 import com.example.a4homework.databinding.FragmentOnBoardBinding
 import com.example.a4homework.databinding.ItemBoardBinding
 
-class BoardAdapter(private val listener: () -> Unit) : Adapter<BoardAdapter.BoardViewHolder>() {
+class BoardAdapter(private val listener: () -> Unit ) : Adapter<BoardAdapter.BoardViewHolder>() {
     private val imgList = listOf(R.drawable.img, R.drawable.img_1, R.drawable.img_2)
     private val titleList = listOf("Title 1", "Title 2", "Title 3")
     private val desList = listOf("Des 1", "Des 2", "Des 3")
