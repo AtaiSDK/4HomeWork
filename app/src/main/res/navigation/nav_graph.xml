@@ -8,17 +8,11 @@
         android:id="@+id/onBoardFragment2"
         android:name="com.example.a4homework.ui.fragment.board.OnBoardFragment"
         android:label="fragment_on_board"
-        tools:layout="@layout/fragment_on_board" />
-    <activity
-        android:id="@+id/mainActivity2"
-        android:name="com.example.a4homework.ui.activity.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
-    <activity
-        android:id="@+id/splashScreenActivity2"
-        android:name="com.example.a4homework.ui.activity.SplashScreenActivity"
-        android:label="activity_splash_screen"
-        tools:layout="@layout/activity_splash_screen" />
+        tools:layout="@layout/fragment_on_board" >
+        <action
+            android:id="@+id/action_onBoardFragment2_to_noteFragment2"
+            app:destination="@id/noteFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/noteFragment2"
         android:name="com.example.a4homework.ui.fragment.note.NoteFragment"
