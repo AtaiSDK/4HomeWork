@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.a4homework.R
 import com.example.a4homework.base.BaseFragment
 import com.example.a4homework.databinding.FragmentOnBoardBinding
+import com.example.a4homework.ui.App
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -31,7 +32,8 @@ class OnBoardFragment : BaseFragment<FragmentOnBoardBinding>(FragmentOnBoardBind
 
     }
     private fun listener(){
-        findNavController().navigate(R.id.noteFragment2)
+        App.prefs.safeBoardState()
+        findNavController().navigateUp()
     }
 }
 

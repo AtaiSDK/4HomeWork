@@ -3,19 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/onBoardFragment2">
+    app:startDestination="@id/noteFragment2">
     <fragment
         android:id="@+id/onBoardFragment2"
         android:name="com.example.a4homework.ui.fragment.board.OnBoardFragment"
         android:label="fragment_on_board"
-        tools:layout="@layout/fragment_on_board" >
-        <action
-            android:id="@+id/action_onBoardFragment2_to_noteFragment2"
-            app:destination="@id/noteFragment2" />
-    </fragment>
+        tools:layout="@layout/fragment_on_board" />
     <fragment
         android:id="@+id/noteFragment2"
         android:name="com.example.a4homework.ui.fragment.note.NoteFragment"
         android:label="fragment_note"
         tools:layout="@layout/fragment_note" />
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.example.a4homework.ui.fragment.addNote.AddNoteFragment"
+        android:label="fragment_add_note"
+        tools:layout="@layout/fragment_add_note" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.a4homework.ui.fragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

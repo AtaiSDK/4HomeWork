@@ -8,11 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:constraint_referenced_ids="item_image_board, item_image_title, item_image_desc, item_btn"/>
-    <ImageView
-        android:id="@+id/item_image_board"
-        android:layout_width="300dp"
-        android:layout_height="300dp"/>
+        app:constraint_referenced_ids="anim, item_image_title, item_image_desc, item_btn"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/anim"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        />
     <TextView
         android:id="@+id/item_image_title"
         android:layout_width="wrap_content"
