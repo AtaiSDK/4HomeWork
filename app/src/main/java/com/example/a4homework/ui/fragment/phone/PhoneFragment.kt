@@ -1,51 +1,81 @@
-package com.example.a4homework.ui.fragment.board
+package com.example.a4homework.ui.fragment.phone
 
 import android.content.Intent
-import android.graphics.drawable.Drawable
-import android.media.session.MediaSession.Token
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TableLayout
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.a4homework.R
 import com.example.a4homework.base.BaseFragment
-import com.example.a4homework.databinding.FragmentOnBoardBinding
-import com.example.a4homework.ui.App
+import com.example.a4homework.databinding.FragmentPhoneBinding
+import com.example.a4homework.databinding.FragmentProfileBinding
+import com.example.a4homework.ui.activity.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthCredential
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.util.concurrent.TimeUnit
 
+class PhoneFragment : BaseFragment<FragmentPhoneBinding>(FragmentPhoneBinding::inflate) {
 
-class OnBoardFragment : BaseFragment<FragmentOnBoardBinding>(FragmentOnBoardBinding::inflate) {
-
-    private val adapter : BoardAdapter by lazy {BoardAdapter(this::listener)}
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var callback: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private lateinit var  auth : FirebaseAuth
     private lateinit var googleSingInClient: GoogleSignInClient
 
-
     override fun setupUI() {
-        binding.pager.adapter = adapter
+        mAuth = FirebaseAuth.getInstance()
         initGoogleClient()
+        binding.btnAdd.setOnClickListener {
+            val phone = binding.edPhone.text.toString().trim()
 
-        TabLayoutMediator(binding.tabLayout, binding.pager){
-            tab: TabLayout.Tab , position: Int -> tab.setIcon(R.drawable.tab_indicator_background)
-        }.attach()
+            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                phone, 60, TimeUnit.SECONDS,
+                activity as MainActivity, callback
+            )
+        }
+
+        binding.btnGoogle.setOnClickListener {
+            singIn()
+        }
+
+        callback = object: PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            override fun onVerificationCompleted(p0: PhoneAuthCredential) {
+                mAuth.signInWithCredential(p0).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        findNavController().navigate(R.id.noteFragment2)
+                    } else {
+                        Log.e("ololo", "error in register")
+                    }
+                }
+            }
+
+            override fun onVerificationFailed(p0: FirebaseException) {
+                Log.e("ololo", "error in verifiocation" )
+            }
+
+            override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
+                super.onCodeSent(p0, p1)
+                val bundle = Bundle()
+                bundle.putString("id", p0)
+                findNavController().navigate(R.id.codeFragment, bundle)
+            }
+
+        }
+
     }
+
 
     private fun initGoogleClient(){
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -55,8 +85,6 @@ class OnBoardFragment : BaseFragment<FragmentOnBoardBinding>(FragmentOnBoardBind
 
         googleSingInClient = GoogleSignIn.getClient(requireActivity(), gso)
         auth = Firebase.auth
-
-
     }
     companion object{
         private  const val RG_SING_IN = 9001
@@ -66,7 +94,7 @@ class OnBoardFragment : BaseFragment<FragmentOnBoardBinding>(FragmentOnBoardBind
         auth.signInWithCredential(credential)
             .addOnCompleteListener(requireActivity()){ task ->
                 if(task.isSuccessful){
-                    findNavController().navigateUp()
+                    findNavController().navigate(R.id.noteFragment2)
                 }else{
                     Toast.makeText( requireContext(), task.exception.toString(), Toast.LENGTH_SHORT)
                         .show()
@@ -77,7 +105,6 @@ class OnBoardFragment : BaseFragment<FragmentOnBoardBinding>(FragmentOnBoardBind
         val intent = googleSingInClient.signInIntent
         startActivityForResult(intent, RG_SING_IN )
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == RG_SING_IN){
@@ -91,12 +118,5 @@ class OnBoardFragment : BaseFragment<FragmentOnBoardBinding>(FragmentOnBoardBind
             }
         }
     }
-    private fun listener(){
-        App.prefs.safeBoardState()
-//        singIn()
-        findNavController().navigate(R.id.phoneFragment)
-    }
+
 }
-
-
-

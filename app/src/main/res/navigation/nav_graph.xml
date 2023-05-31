@@ -21,7 +21,27 @@
         tools:layout="@layout/fragment_add_note" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.a4homework.ui.fragment.ProfileFragment"
+        android:name="com.example.a4homework.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.example.a4homework.ui.fragment.ContactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" />
+    <fragment
+        android:id="@+id/firestoreFragment"
+        android:name="com.example.a4homework.ui.fragment.firestore.FirestoreFragment"
+        android:label="FirestoreFragment"
+        tools:layout="@layout/fragment_firestore"/>
+    <fragment
+        android:id="@+id/phoneFragment"
+        android:name="com.example.a4homework.ui.fragment.phone.PhoneFragment"
+        android:label="fragment_code"
+        tools:layout="@layout/fragment_code" />
+    <fragment
+        android:id="@+id/codeFragment"
+        android:name="com.example.a4homework.ui.fragment.phone.CodeFragment"
+        android:label="CodeFragment"
+        tools:layout="@layout/fragment_code"/>
 </navigation>

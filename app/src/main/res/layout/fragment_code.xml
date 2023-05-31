@@ -7,32 +7,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.addNote.AddNoteFragment">
+    tools:context=".ui.fragment.phone.PhoneFragment">
 
 
     <EditText
-        android:id="@+id/ed_title"
+        android:id="@+id/ed_code"
         android:textColor="@color/black"
-        android:hint="title"
+        android:hint="code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-
-    <EditText
-        android:layout_marginVertical="24dp"
-        android:id="@+id/ed_desc"
-        android:textColor="@color/black"
-        android:hint="Desc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
 
     <Button
-        android:backgroundTint="@color/black"
+        android:layout_marginTop="24dp"
         android:id="@+id/btn_add"
-        android:text="Save"
+        android:text="save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
 </LinearLayout>

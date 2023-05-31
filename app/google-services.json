@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "676684632718",
+    "project_id": "firstfirebaseusing",
+    "storage_bucket": "firstfirebaseusing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676684632718:android:ff0a942f09ab57e10befdf",
+        "android_client_info": {
+          "package_name": "com.example.a4homework"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676684632718-l8siolqoo327789uomkkvf9qfl2erbij.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.a4homework",
+            "certificate_hash": "8aab8e1efe6e46c92b204241a260e315868bc442"
+          }
+        },
+        {
+          "client_id": "676684632718-6u4p9lmvdq80p0oubnigqoumvhpvu1dt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmFg6JtW7vGfGWJ7JQbl3QXc1w5KCF8H4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676684632718-6u4p9lmvdq80p0oubnigqoumvhpvu1dt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

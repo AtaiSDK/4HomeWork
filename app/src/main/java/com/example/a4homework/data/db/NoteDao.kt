@@ -5,10 +5,10 @@ import com.example.a4homework.data.model.NoteModel
 
 @Dao
 interface NoteDao {
-    @Query("select * from notemodel")
+    @Query("SELECT * FROM notemodel")
     fun getAllNote():List<NoteModel>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addNote(model: NoteModel)
 
     @Update

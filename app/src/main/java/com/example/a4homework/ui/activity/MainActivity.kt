@@ -26,12 +26,15 @@ class MainActivity : AppCompatActivity() {
 
         if(!App.prefs.isBoardShow()){
             controller.navigate(R.id.onBoardFragment2)
+        } else {
+            controller.navigate(R.id.noteFragment2)
         }
 
         controller.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.noteFragment2 ||
-                destination.id == R.id.addNoteFragment ||
-                destination.id == R.id.profileFragment
+                destination.id == R.id.contactFragment ||
+                destination.id == R.id.profileFragment ||
+                destination.id == R.id.firestoreFragment
             ){
                 binding.bottomNavMenu.visibility = View.VISIBLE
             }else{
@@ -41,17 +44,20 @@ class MainActivity : AppCompatActivity() {
 
             binding.bottomNavMenu.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.item1 ->{
+                R.id.noteFragment2 ->{
                     controller.navigate(R.id.noteFragment2)
                 }
-                R.id.item2 ->{
-                    controller.navigate(R.id.addNoteFragment)
+                R.id.contactFragment ->{
+                    controller.navigate(R.id.contactFragment)
                 }
-                R.id.item3 ->{
+                R.id.profileFragment ->{
                     controller.navigate(R.id.profileFragment)
+                }
+                R.id.firestoreFragment ->{
+                    controller.navigate(R.id.firestoreFragment)
                 }
             }
             true
         }
-    }
-}}
+    }}
+}

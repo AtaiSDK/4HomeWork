@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/item1"
+        android:id="@+id/noteFragment2"
         android:icon="@drawable/note_bottom_menu"
         android:orderInCategory="1"
-        android:title="Item1"
+        android:title="Note"
         />
     <item
-        android:id="@+id/item2"
+        android:id="@+id/contactFragment"
         android:icon="@drawable/contact_bottom_nav"
         android:orderInCategory="2"
-        android:title="Item2"
+        android:title="Contacts"
         />
     <item
-        android:id="@+id/item3"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/profile_bottom_menu"
         android:orderInCategory="3"
-        android:title="Item3"
+        android:title="Profile"
+        />
+
+    <item
+        android:id="@+id/firestoreFragment"
+        android:icon="@drawable/profile_bottom_menu"
+        android:orderInCategory="3"
+        android:title="Firestore"
         />
 </menu>
