@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.a4homework.data.model.NoteModel
 import com.example.a4homework.databinding.ItemListBinding
 
-class NoteAdapter: Adapter<NoteAdapter.NoteViewHolder>() {
+class NoteAdapter(
+    private val click: Result
+): Adapter<NoteAdapter.NoteViewHolder>() {
 
     private val list = ArrayList<NoteModel>()
 
@@ -20,7 +22,7 @@ class NoteAdapter: Adapter<NoteAdapter.NoteViewHolder>() {
     }
 
 
-    inner class NoteViewHolder(private val binding: ItemListBinding): ViewHolder(binding.root) {
+    inner class NoteViewHolder(val binding: ItemListBinding): ViewHolder(binding.root) {
         fun onBind(model: NoteModel) {
             binding.tvDate.text = model.date
             binding.tvTitle.text = model.title
@@ -40,7 +42,21 @@ class NoteAdapter: Adapter<NoteAdapter.NoteViewHolder>() {
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         holder.onBind(list[position])
+        holder.itemView.setOnLongClickListener {
+            click.longClick(list[position])
+            true
+        }
+
+        holder.itemView.setOnClickListener {
+            click.longClick(list[position])
+        }
     }
 
     override fun getItemCount(): Int = list.size
+
+
+    interface Result{
+        fun longClick(model: NoteModel)
+        fun clickChange(model: NoteModel)
+    }
 }

@@ -26,7 +26,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/contactFragment"
-        android:name="com.example.a4homework.ui.fragment.ContactFragment"
+        android:name="com.example.a4homework.ui.fragment.contact.ContactFragment"
         android:label="fragment_contact"
         tools:layout="@layout/fragment_contact" />
     <fragment

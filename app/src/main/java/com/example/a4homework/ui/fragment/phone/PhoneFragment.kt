@@ -62,7 +62,7 @@ class PhoneFragment : BaseFragment<FragmentPhoneBinding>(FragmentPhoneBinding::i
             }
 
             override fun onVerificationFailed(p0: FirebaseException) {
-                Log.e("ololo", "error in verifiocation" )
+                Log.e("ololo", "error in verification" )
             }
 
             override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
