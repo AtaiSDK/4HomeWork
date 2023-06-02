@@ -28,6 +28,8 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
         adapter.setList(models)
         binding.rvNote.adapter = adapter
         binding.btnAdd.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("id", "addNote")
             findNavController().navigate(R.id.addNoteFragment)
         }
     }
@@ -49,6 +51,26 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
     }
 
     override fun clickChange(model: NoteModel) {
+        val builder = AlertDialog.Builder(requireContext())
 
+        builder.setTitle("Вы уверены что хотите изменить заметку")
+
+        builder.setPositiveButton("Сортировать по дате") { dialog, which ->
+            val list = App.db.getNoteDao().sortByDate()
+            adapter.setList(list)
+        }
+
+        builder.setNegativeButton("Сортировать по алфавиту") { dialog, which ->
+            val list = App.db.getNoteDao().sortByElement()
+            adapter.setList(list)
+        }
+        builder.show()
+    }
+
+    override fun noteChange(model: NoteModel) {
+        val bundle = Bundle()
+        bundle.putString("id", "noteChange")
+        bundle.putSerializable("noteModel", model)
+        findNavController().navigate(R.id.addNoteFragment, bundle)
     }
 }

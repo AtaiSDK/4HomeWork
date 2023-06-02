@@ -29,7 +29,7 @@ class FirestoreFragment : BaseFragment<FragmentFirestoreBinding>(FragmentFiresto
         binding.rvNote.adapter = adapter
         binding.btnAdd.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("id", "id")
+            bundle.putString("id", "firestore")
             findNavController().navigateUp()
             findNavController().navigate(R.id.addNoteFragment, bundle)
         }

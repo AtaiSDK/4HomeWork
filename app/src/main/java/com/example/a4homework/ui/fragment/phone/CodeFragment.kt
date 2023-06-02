@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.a4homework.R
 import com.example.a4homework.base.BaseFragment
 import com.example.a4homework.databinding.FragmentCodeBinding
+import com.example.a4homework.ui.App
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
@@ -31,7 +32,12 @@ class CodeFragment : BaseFragment<FragmentCodeBinding>(FragmentCodeBinding::infl
 
                 mAuth.signInWithCredential(credential).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        findNavController().navigate(R.id.noteFragment2)
+                        val user = App.prefs.getUserName()
+                        if (user == "") {
+                            findNavController().navigate(R.id.registerFragment)
+                        } else {
+                            findNavController().navigate(R.id.noteFragment2)
+                        }
                     } else {
                         Toast.makeText(requireContext(), "что-то пошло не так", Toast.LENGTH_SHORT).show()
                     }

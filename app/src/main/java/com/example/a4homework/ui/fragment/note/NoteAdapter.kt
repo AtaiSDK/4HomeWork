@@ -43,12 +43,16 @@ class NoteAdapter(
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         holder.onBind(list[position])
         holder.itemView.setOnLongClickListener {
-            click.longClick(list[position])
+            click.clickChange(list[position])
             true
         }
 
-        holder.itemView.setOnClickListener {
+        holder.binding.imgDelete.setOnClickListener {
             click.longClick(list[position])
+        }
+
+        holder.itemView.setOnClickListener {
+            click.noteChange(list[position])
         }
     }
 
@@ -58,5 +62,6 @@ class NoteAdapter(
     interface Result{
         fun longClick(model: NoteModel)
         fun clickChange(model: NoteModel)
+        fun noteChange(model: NoteModel)
     }
 }

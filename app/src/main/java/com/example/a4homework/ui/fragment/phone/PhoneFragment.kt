@@ -13,6 +13,7 @@ import com.example.a4homework.R
 import com.example.a4homework.base.BaseFragment
 import com.example.a4homework.databinding.FragmentPhoneBinding
 import com.example.a4homework.databinding.FragmentProfileBinding
+import com.example.a4homework.ui.App
 import com.example.a4homework.ui.activity.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -54,7 +55,12 @@ class PhoneFragment : BaseFragment<FragmentPhoneBinding>(FragmentPhoneBinding::i
             override fun onVerificationCompleted(p0: PhoneAuthCredential) {
                 mAuth.signInWithCredential(p0).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        findNavController().navigate(R.id.noteFragment2)
+                        val user = App.prefs.getUserName()
+                        if (user == "") {
+                            findNavController().navigate(R.id.registerFragment)
+                        } else {
+                            findNavController().navigate(R.id.noteFragment2)
+                        }
                     } else {
                         Log.e("ololo", "error in register")
                     }

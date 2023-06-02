@@ -2,6 +2,7 @@ package com.example.a4homework.data.db
 
 import androidx.room.*
 import com.example.a4homework.data.model.NoteModel
+import com.google.common.net.HttpHeaders.FROM
 
 @Dao
 interface NoteDao {
@@ -17,5 +18,9 @@ interface NoteDao {
     @Delete
     fun deleteNote(model: NoteModel)
 
+    @Query("SELECT * FROM notemodel order BY date DESC")
+    fun sortByDate(): List<NoteModel>
 
+    @Query("SELECT * FROM notemodel ")
+    fun sortByElement(): List<NoteModel>
 }

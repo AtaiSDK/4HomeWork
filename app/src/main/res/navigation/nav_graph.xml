@@ -44,4 +44,9 @@
         android:name="com.example.a4homework.ui.fragment.phone.CodeFragment"
         android:label="CodeFragment"
         tools:layout="@layout/fragment_code"/>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.a4homework.ui.register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
 </navigation>
